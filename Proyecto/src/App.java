@@ -1,10 +1,13 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class App {
 
     
     public static void main(String[] args) throws Exception {
 
+        Interfazz zz = new Interfazz();
+    }
+/* 
         try (Scanner scanner = new Scanner(System.in)) {
 
 
@@ -29,8 +32,6 @@ public class App {
                 System.out.print("Para inscribir/modificar un candidato elija una opcion: ");
                 opcion = scanner.nextInt();
                 System.out.println();
-                limpiarPantalla();
-                esperarSegundos(300);
 
                 Insertar obj1 = new Insertar();
                 Actualizar obj2 = new Actualizar();
@@ -43,8 +44,7 @@ public class App {
 
                 switch (opcion) {
 
-                    case 1: System.out.println("\n[Ingrese 0 para salir]\n");obj1.insertar();
-                    esperarSegundos(330);limpiarPantalla();break;
+                    case 1: System.out.println("\n[Ingrese 0 para salir]\n");obj1.insertar();break;
                     case 2: obj2.actualizar();break;
                     case 3: obj3.eliminar();break;
                     case 4: obj4.buscar();break;
@@ -59,23 +59,7 @@ public class App {
                 }
             }while(opcion!=0);
         }
-    }
-
-    public static void limpiarPantalla() {
-        try{ new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    
-        }catch (Exception e){
-
-            e.printStackTrace();
-        }
-    }
-    public static void esperarSegundos(int sg) {
-        try {
-            Thread.sleep(sg); // Convierte segundos a milisegundos
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+    }*/
     
 }
 

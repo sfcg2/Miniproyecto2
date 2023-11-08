@@ -4,7 +4,7 @@ public class Candidato extends Ciudadano {
     private String partido_P;
     private String promesas;
     private int votos;
-
+    
     public Candidato(){}; 
    
     public String getIdeologia() {
@@ -21,21 +21,6 @@ public class Candidato extends Ciudadano {
         System.out.print("Partido Politico: ");
         partido_P = scanner.nextLine();
     }
-    public String getPromesas() {
-        return promesas.toUpperCase();
-    }
-    public void setPromesas() {
-        System.out.print("Promesa: ");
-        promesas = scanner.nextLine();
-    }
-    
-    public int getVotos() {
-        return votos;
-    }
-    public void setVotos() {
-        votos++;
-    }
-
     @Override
     public String getCedula() {
         return super.getCedula();
@@ -65,9 +50,25 @@ public class Candidato extends Ciudadano {
     public String toString() {
         return "\nNombre: " + getNombre() + "\nCedula: " + getCedula() + "\nCiudad: " + getCiudad()
         + "\nIdeologia: " + getIdeologia() + "\nPartido Politico: " + getPartido_P() +"\nPromesas: " 
-        + getPromesas() + "\nVotos: " + getVotos();
+        + getPromesas();
+    }
+
+    public String getPromesas() {
+        return promesas.toUpperCase();
+    }
+
+    public void setPromesas() {
+        System.out.print("Promesa: ");
+        promesas = scanner.nextLine();
+    }
+
+    public void setsumarVotos() {
+        votos++;
+        
+    }
+
+    public int getVotos() {
+        return votos;
     }
 
 }
-
-

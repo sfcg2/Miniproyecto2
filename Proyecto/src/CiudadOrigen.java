@@ -1,5 +1,4 @@
 public enum CiudadOrigen {
-   
     Alcala(0), Andalucia(0), Ansermanuevo(0), Argelia(0), Bolivar(0), Buenaventura(0), 
     Buga(0), Bugalagrande(0), Caicedonia(0), Cali(0), Calima(0), Candelaria(0), Cartago(0), 
     Dagua(0), ElAguila(0), ElCairo(0), ElCerrito(0), ElDarien(0), ElDovio(0), Florida(0), 
@@ -26,6 +25,5 @@ public enum CiudadOrigen {
     public String toString() {
         return super.toString();
     }
-
     
 }

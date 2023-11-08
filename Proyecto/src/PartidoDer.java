@@ -2,6 +2,8 @@ public enum PartidoDer {
     SalvaciónNacional(0), NuevaFuerzaDemocratica(0), CentroDemocratico(0),
     ColombiaJustayLibres(0), PartidoConservador(0), Creemos(0), Mira(0);
 
+    
+
     private int sumaDr;
 
     private PartidoDer(int sumaDr){
@@ -19,6 +21,7 @@ public enum PartidoDer {
     @Override
     public String toString() {
         return super.toString();
+    
     }
-
 }
+

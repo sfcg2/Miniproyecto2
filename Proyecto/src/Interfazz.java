@@ -88,7 +88,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-        if(e.getStateChange() == 1){
+        /*if(e.getStateChange() == 1){
 
                 System.out.println("kdflhd");
 
@@ -96,16 +96,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
                 System.out.println("gkg");
 
-                if(e.getStateChange() == 1){
-
-                    System.out.println("kdflhd");
-
-                    if(e.getItemSelectable() == insertar){
-                        System.out.println("hola");
-                    }
-                }
             }
-        }
+        }*/
     }
 
     @Override
@@ -128,7 +120,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             menuB.add(opciones);
 
             insertar = new JMenuItem("Insertar Candidato");
-            insertar.addItemListener(this);
+            insertar.addActionListener(this);
             opciones.add(insertar);
             
             actualizar = new JMenuItem("Actualizar Candidato");
@@ -155,16 +147,14 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             etq.setPreferredSize(new Dimension(800,600));
             panel.add(etq);
             wnd.add(panel, BorderLayout.CENTER);
-
-            //if(e.getSource() == opciones){
-                //System.out.println("dklfg");
-            //}
-            
-
-                
+ 
             wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             wnd.setSize(700, 700); 
             wnd.setVisible(true);
         }
+
+        if(e.getSource() == insertar){
+                System.out.println("insert");
+            }
     };
 }

@@ -254,11 +254,11 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             panel = new JPanel();
             panel.setLayout(new GridLayout(2,1,15,35));
             
-            etq = new JLabel("  ACTUALIZACIÓN");
+            etq = new JLabel("   ACTUALIZACIÓN");
             etq.setFont(new Font("Arial", Font.BOLD, 50));
             panel.add(etq);
 
-            etq2 = new JLabel("    CANDIDATO");
+            etq2 = new JLabel("     CANDIDATO");
             etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
             panel.add(etq2);
             wnd.add(panel, BorderLayout.NORTH);

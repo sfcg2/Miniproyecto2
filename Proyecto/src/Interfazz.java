@@ -31,7 +31,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     JMenuItem insertar, actualizar, eliminar, buscar, listar, votar, info;
     JPanel panel;
     //BorderLayout border;
-    JLabel etq;
+    JLabel etq, etq2;
     JButton iniciar, ingresar, actu, elim, bcar, salir, vtar ;
     JFrame wnd;
     public static JTextField nom, cc, cdad, idel, part, prom;
@@ -45,10 +45,15 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         contenedor.setLayout(new BorderLayout(50,150));
 
         panel = new JPanel();
+        panel.setLayout(new GridLayout(2,1,5,25));
         contenedor.add(panel, BorderLayout.NORTH);
 
-        etq = new JLabel("E L E C C I O N E S");
-        etq.setFont(new Font("Serif", Font.ITALIC, 50));
+        etq = new JLabel("      ELECCIONES");
+        etq.setFont(new Font("Arial", Font.BOLD, 50)); 
+        panel.add(etq);
+
+        etq = new JLabel("      CANDIDATOS");
+        etq.setFont(new Font("Arial", Font.BOLD, 50)); 
         panel.add(etq);
 
         panel = new JPanel();
@@ -87,23 +92,21 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         
 */
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 500); 
+        setSize(500, 580); 
         setVisible(true); 
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-        /*if(e.getStateChange() == 1){
-
-                System.out.println("kdflhd");
-
-            if(e.getItemSelectable() == opciones){
-
+        if(e.getStateChange() == 1){
+            if(e.getItemSelectable() == indica){
                 System.out.println("gkg");
-
+                JOptionPane.showMessageDialog(wnd, "Ingresar:\n *Promesas juntas, separadas por comas (,)\n  *Cedula sin puntos", 
+                "Indicaciones", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-        }*/
+        }
     }
 
     @Override
@@ -119,8 +122,10 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd.add(menuB, BorderLayout.NORTH);
 
             indica = new JMenu("Indicaciones");
+            indica.addItemListener(this);
             menuB.add(indica);
 
+            
             opciones = new JMenu("Opciones");
             opciones.addItemListener(this);
             menuB.add(opciones);
@@ -130,6 +135,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             opciones.add(insertar);
             
             actualizar = new JMenuItem("Actualizar Candidato");
+            actualizar.addActionListener(this);
             opciones.add(actualizar);
             
             eliminar = new JMenuItem("Eliminar Candidato");
@@ -157,18 +163,17 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             wnd.setSize(500, 600); 
             wnd.setVisible(true);
-        }
 
-        else if(e.getSource() == insertar){
+        }else if(e.getSource() == insertar){
 
-            wnd = new JFrame("Incripciones");
+            wnd = new JFrame("Inscripción");
             wnd.setLayout(new BorderLayout(15,15));
 
             etq = new JLabel("D A T O S");
             
-            etq.setFont(new Font("Serif", Font.ITALIC, 50));
+            etq.setFont(new Font("Arial", Font.BOLD, 50)); 
 
-            panel= new JPanel();
+            panel = new JPanel();
             panel.setLayout(new FlowLayout());
             panel.add(etq);
             wnd.add(panel, BorderLayout.NORTH);
@@ -177,37 +182,37 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             p.setLayout(new GridLayout(6,2,20,40));
 
             etq = new JLabel("Nombre: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
             nom = new JTextField(15);
             p.add(etq);
             p.add(nom);
 
-            etq = new JLabel("Cedula: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            etq = new JLabel("Cédula: ");
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
             cc = new JTextField(15);
             p.add(etq);
             p.add(cc);
 
             etq = new JLabel("Ciudad: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
             cdad = new JTextField(15);
             p.add(etq);
             p.add(cdad);
 
             etq = new JLabel("Ideologia: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
             idel = new JTextField(15);
             p.add(etq);
             p.add(idel);
 
             etq = new JLabel("Partido: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
             part = new JTextField(15);
             p.add(etq);
             p.add(part);
 
             etq = new JLabel("Promesas: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
             prom = new JTextField(15);
             p.add(etq);
             p.add(prom);
@@ -217,7 +222,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             p = new JPanel();
             //p.setBackground(Color.GREEN);
             ingresar = new JButton("Ingresar");
-            ingresar.setFont(new Font("Serif", Font.ITALIC, 20));
+            ingresar.setFont(new Font("Arial", Font.ITALIC, 20));
             ingresar.addActionListener(this);
             p.add(ingresar);
             wnd.add(p, BorderLayout.SOUTH);
@@ -238,9 +243,55 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
         }else if(e.getSource() == ingresar){
             in.insertar();
-            //JOptionPane.showMessageDialog(wnd, "Valido solo para Ciudades del Valle del Cauca", "ERROR", JOptionPane.ERROR_MESSAGE);
 
             System.out.println(lsiat.toString());
+
+        }else if(e.getSource() == actualizar){
+
+            wnd = new JFrame("Actualización");
+            wnd.setLayout(new BorderLayout(15,15));
+
+            panel = new JPanel();
+            panel.setLayout(new GridLayout(2,1,15,35));
+            
+            etq = new JLabel("  ACTUALIZACIÓN");
+            etq.setFont(new Font("Arial", Font.BOLD, 50));
+            panel.add(etq);
+
+            etq2 = new JLabel("    CANDIDATO");
+            etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
+            panel.add(etq2);
+            wnd.add(panel, BorderLayout.NORTH);
+
+            JPanel p = new JPanel();
+            //p.setLayout(new FlowLayout());
+
+            etq = new JLabel("                                                                             ");
+            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
+            p.add(etq);
+
+            etq = new JLabel("Cédula: ");
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+            cc = new JTextField(15);
+            p.add(etq);
+            p.add(cc);
+            wnd.add(p, BorderLayout.CENTER);
+
+            p = new JPanel();
+            actu = new JButton("Actualizar");
+            actu.setFont(new Font("Arial", Font.ITALIC, 20));
+            actu.addActionListener(this);
+            p.add(actu);
+            etq = new JLabel("                                                                             ");
+            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
+            p.add(etq);
+            wnd.add(p, BorderLayout.SOUTH);
+
+            
+            wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            wnd.setSize(500, 570); 
+            wnd.setVisible(true);
+            System.out.println("actuali");
 
         }
 
@@ -257,4 +308,6 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     }public static String getProm() {
         return prom.getText();
     }
+
+    
 }

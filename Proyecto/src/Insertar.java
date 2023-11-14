@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class Insertar {
 
-    private static ArrayList<Candidato> inscritos = new ArrayList<>(); 
+    public static ArrayList<Candidato> inscritos = new ArrayList<>(); 
     
     Scanner scanner = new Scanner(System.in);
     App pp = new App();
@@ -31,6 +31,7 @@ public class Insertar {
             if(candidato.getCedula().equals(inscritos.get(i).getCedula())){
                 val = true;
                 JOptionPane.showMessageDialog(null, "Cedula existente, ingresela nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
                 //System.out.println("-> Candidato Existente");
                 //System.out.println("  Ingrese los datos nuevamente.");
                 //pp.esperarSegundos(1700);
@@ -85,7 +86,7 @@ public class Insertar {
                         }
                     }if(val3 == false){
                         JOptionPane.showMessageDialog(null, "Partido NO Valido, ingreselo nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
-                        
+                        return;
                         //System.out.println("\n-> Partido NO Valido");
                         //System.out.println("   Vuelva a ingresar ideologia + partido.\n");
                         
@@ -105,12 +106,14 @@ public class Insertar {
                         }
                     }if(val3 == false){
                         JOptionPane.showMessageDialog(null, "Partido NO Valido, ingreselo nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        return;
                         //System.out.println("\n-> Partido NO Valido");
                         //System.out.println("   Vuelva a ingresar ideologia + partido.\n");
                         
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "IDEOLOGIAS VALIDAS -> Derecha o Izquierda", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
                     //System.out.println("\n-> IDEOLOGIAS VALIDAS -> Derecha o Izquierda.\n");
                     
                     

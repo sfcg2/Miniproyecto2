@@ -270,6 +270,60 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             contenedor.setVisible(false);
             wnd.dispose();
             System.out.println(lsiat.toString());
+
+        }else if(e.getSource() == buscar){
+
+            wnd = new JFrame("Busquedad");
+            wnd.setLayout(new BorderLayout(15,15));
+
+            panel = new JPanel();
+            panel.setLayout(new GridLayout(2,1,15,35));
+            
+            etq = new JLabel("       BUSCAR");
+            etq.setFont(new Font("Arial", Font.BOLD, 50));
+            panel.add(etq);
+
+            etq2 = new JLabel("     CANDIDATO");
+            etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
+            panel.add(etq2);
+            wnd.add(panel, BorderLayout.NORTH);
+
+            JPanel p = new JPanel();
+            //p.setLayout(new FlowLayout());
+
+            etq = new JLabel("                                                                             ");
+            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
+            p.add(etq);
+
+            etq = new JLabel("Cédula: ");
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+            cc = new JTextField(15);
+            p.add(etq);
+            p.add(cc);
+            wnd.add(p, BorderLayout.CENTER);
+
+            p = new JPanel();
+            bcar = new JButton("Buscar");
+            bcar.setFont(new Font("Arial", Font.ITALIC, 20));
+           bcar.addActionListener(this);
+            p.add(bcar);
+            etq = new JLabel("                                                                             ");
+            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
+            p.add(etq);
+            wnd.add(p, BorderLayout.SOUTH);
+
+            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd.setSize(500, 570); 
+            wnd.setVisible(true);
+
+            System.out.println("buscar");
+            
+        }else if(e.getSource() == bcar){
+
+            el.eliminar();
+            contenedor.setVisible(false);
+            wnd.dispose();
+            System.out.println(lsiat.toString());
         }
 
     }

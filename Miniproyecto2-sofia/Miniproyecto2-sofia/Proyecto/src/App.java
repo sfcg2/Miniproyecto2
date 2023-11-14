@@ -5,7 +5,7 @@ public class App {
     
     public static void main(String[] args) throws Exception {
 
-        // Interfazz zz = new Interfazz();
+        Interfazz zz = new Interfazz();
     }
 /* 
         try (Scanner scanner = new Scanner(System.in)) {

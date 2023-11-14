@@ -10,16 +10,14 @@ public class Candidato extends Ciudadano {
     public String getIdeologia() {
         return ideologia.toUpperCase();
     }
-    public void setIdeologia() {
-        System.out.print("Ideologia: ");
-        ideologia = scanner.nextLine();
+    public void setIdeologia(String idel) {
+        this.ideologia = idel;
     }
     public String getPartido_P() {
         return partido_P.toUpperCase();
     }
-    public void setPartido_P() {
-        System.out.print("Partido Politico: ");
-        partido_P = scanner.nextLine();
+    public void setPartido_P(String part) {
+        this.partido_P = part;
     }
     @Override
     public String getCedula() {
@@ -34,16 +32,16 @@ public class Candidato extends Ciudadano {
         return super.getNombre().toUpperCase();
     }
     @Override
-    public void setCedula() {
-        super.setCedula();
+    public void setCedula(String cc) {
+        super.setCedula(cc);
     }
     @Override
-    public void setCiudad() {
-        super.setCiudad();
+    public void setCiudad(String cdad) {
+        super.setCiudad(cdad);
     }
     @Override
-    public void setNombre() {
-        super.setNombre();
+    public void setNombre(String nom) {
+        super.setNombre(nom);
     }
     
     @Override
@@ -57,9 +55,8 @@ public class Candidato extends Ciudadano {
         return promesas.toUpperCase();
     }
 
-    public void setPromesas() {
-        System.out.print("Promesa: ");
-        promesas = scanner.nextLine();
+    public void setPromesas(String prom) {
+        this.promesas = prom;
     }
 
     public void setsumarVotos() {

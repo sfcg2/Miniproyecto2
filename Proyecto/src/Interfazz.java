@@ -5,11 +5,11 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 
 
@@ -31,9 +32,12 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     JPanel panel;
     //BorderLayout border;
     JLabel etq;
-    JButton boton;
+    JButton iniciar, ingresar, actu, elim, bcar, salir, vtar ;
     JFrame wnd;
-    JTextField campo;
+    public static JTextField nom, cc, cdad, idel, part, prom;
+    ArrayList <Candidato> lsiat = Insertar.getInscritos();
+    JOptionPane pane = new JOptionPane(); 
+    Insertar in = new Insertar();
 
     public Interfazz (){
 
@@ -74,9 +78,9 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         
         contenedor.add(panel, BorderLayout.SOUTH);
 
-        boton = new JButton("Iniciar");
-        boton.addActionListener(this);
-        contenedor.add(boton, BorderLayout.CENTER);
+        iniciar = new JButton("Iniciar");
+        iniciar.addActionListener(this);
+        contenedor.add(iniciar, BorderLayout.CENTER);
 /* 
         
 
@@ -105,7 +109,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == boton){
+        if(e.getSource() == iniciar){
             
             wnd = new JFrame("Elecciones");
             wnd.setLayout(new BorderLayout(15,15));
@@ -151,11 +155,11 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd.add(panel, BorderLayout.CENTER);
  
             wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            wnd.setSize(700, 700); 
+            wnd.setSize(500, 600); 
             wnd.setVisible(true);
         }
 
-        if(e.getSource() == insertar){
+        else if(e.getSource() == insertar){
 
             wnd = new JFrame("Incripciones");
             wnd.setLayout(new BorderLayout(15,15));
@@ -170,71 +174,87 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd.add(panel, BorderLayout.NORTH);
 
             JPanel p = new JPanel();
-            p.setLayout(new GridLayout(6,2,20,30));
+            p.setLayout(new GridLayout(6,2,20,40));
 
             etq = new JLabel("Nombre: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 30));
-            campo = new JTextField(15);
+            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            nom = new JTextField(15);
             p.add(etq);
-            p.add(campo);
+            p.add(nom);
 
             etq = new JLabel("Cedula: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 30));
-            campo = new JTextField(15);
+            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            cc = new JTextField(15);
             p.add(etq);
-            p.add(campo);
+            p.add(cc);
 
             etq = new JLabel("Ciudad: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 30));
-            campo = new JTextField(15);
+            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            cdad = new JTextField(15);
             p.add(etq);
-            p.add(campo);
+            p.add(cdad);
 
             etq = new JLabel("Ideologia: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 30));
-            campo = new JTextField(15);
+            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            idel = new JTextField(15);
             p.add(etq);
-            p.add(campo);
+            p.add(idel);
 
             etq = new JLabel("Partido: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 30));
-            campo = new JTextField(15);
+            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            part = new JTextField(15);
             p.add(etq);
-            p.add(campo);
+            p.add(part);
 
             etq = new JLabel("Promesas: ");
-            etq.setFont(new Font("Serif", Font.ITALIC, 30));
-            campo = new JTextField(15);
+            etq.setFont(new Font("Serif", Font.ITALIC, 15));
+            prom = new JTextField(15);
             p.add(etq);
-            p.add(campo);
+            p.add(prom);
 
             wnd.add(p, BorderLayout.CENTER);
 
             p = new JPanel();
-            p.setBackground(Color.GREEN);
-            boton = new JButton("Ingresar");
-            boton.setFont(new Font("Serif", Font.ITALIC, 30));
-            p.add(boton);
+            //p.setBackground(Color.GREEN);
+            ingresar = new JButton("Ingresar");
+            ingresar.setFont(new Font("Serif", Font.ITALIC, 20));
+            ingresar.addActionListener(this);
+            p.add(ingresar);
             wnd.add(p, BorderLayout.SOUTH);
 
             p = new JPanel();
-            p.setBackground(Color.CYAN);
-            etq = new JLabel("                ");
-            p.add(etq);
+            p.add(new JLabel("                "));
             wnd.add(p, BorderLayout.WEST);
 
             p = new JPanel();
-            p.setBackground(Color.MAGENTA);
-            etq = new JLabel("                ");
-            p.add(etq);
+            p.add(new JLabel("                "));
             wnd.add(p, BorderLayout.EAST);
 
-            
             wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            wnd.setSize(700, 700); 
+            wnd.setSize(500, 570); 
             wnd.setVisible(true);
+            System.out.println("insert");
 
-                System.out.println("insert");
+
+        }else if(e.getSource() == ingresar){
+            in.insertar();
+            //JOptionPane.showMessageDialog(wnd, "Valido solo para Ciudades del Valle del Cauca", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+            System.out.println(lsiat.toString());
+
         }
-    };
+
+    }public static String getNom() {
+        return nom.getText();
+    }public static String getCC() {
+        return cc.getText();
+    }public static String getCdad() {
+        return cdad.getText();
+    }public static String getIdel() {
+        return idel.getText();
+    }public static String getPart() {
+        return part.getText();
+    }public static String getProm() {
+        return prom.getText();
+    }
 }

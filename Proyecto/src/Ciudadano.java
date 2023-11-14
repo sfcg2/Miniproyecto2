@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-public class Ciudadano {
+
+public class Ciudadano  {
 
     private String nombre;
     private String cedula;
@@ -13,30 +14,25 @@ public class Ciudadano {
     public String getNombre (){
         return nombre;
     }
-    public void setNombre() {
-
-        System.out.print("Nombre: ");
-        nombre = scanner.nextLine();
+    public void setNombre(String nom) {
+        this.nombre = nom; 
     }
 
     public String getCedula() {
         return cedula;
     }
 
-    public void setCedula() {
-        System.out.print("Cedula: ");
-        cedula = scanner.nextLine();
+    public void setCedula(String cc) {
+        this.cedula = cc;
     }
 
     public String getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad() {
+    public void setCiudad(String cc) {
         
-        System.out.print("Ciudad: ");
-        ciudad = scanner.nextLine();
-       
+        this.ciudad = cc;
 
     }
     

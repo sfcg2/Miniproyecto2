@@ -40,6 +40,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     
     Insertar in = new Insertar();
     Actualizar ac = new Actualizar();
+    Eliminar el = new Eliminar();
     
 
     public Interfazz (){
@@ -95,19 +96,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         setVisible(true); 
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-
-        if(e.getStateChange() == 1){
-            if(e.getItemSelectable() == indica){
-                System.out.println("gkg");
-                JOptionPane.showMessageDialog(wnd, "Ingresar:\n *Promesas juntas, separadas por comas (,)\n  *Cedula sin puntos", 
-                "Indicaciones", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-        }
-    }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -139,6 +128,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             opciones.add(actualizar);
             
             eliminar = new JMenuItem("Eliminar Candidato");
+            eliminar.addActionListener(this);
             opciones.add(eliminar);
 
             buscar = new JMenuItem("Buscar Candidato");
@@ -171,8 +161,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         }else if(e.getSource() == ingresar){
 
             in.insertar();
-            wnd.dispose();
-
+            
             System.out.println(lsiat.toString());
 
         }else if(e.getSource() == actualizar){
@@ -183,7 +172,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             panel = new JPanel();
             panel.setLayout(new GridLayout(2,1,15,35));
             
-            etq = new JLabel("   ACTUALIZACIÓN");
+            etq = new JLabel("   ACTUALIZAR");
             etq.setFont(new Font("Arial", Font.BOLD, 50));
             panel.add(etq);
 
@@ -227,9 +216,82 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             ac.actualizar();
             wnd.dispose();
             System.out.println(lsiat.toString());
+
+        }else if(e.getSource() == eliminar){
+
+            wnd = new JFrame("Eliminación");
+            wnd.setLayout(new BorderLayout(15,15));
+
+            panel = new JPanel();
+            panel.setLayout(new GridLayout(2,1,15,35));
+            
+            etq = new JLabel("      ELIMINAR");
+            etq.setFont(new Font("Arial", Font.BOLD, 50));
+            panel.add(etq);
+
+            etq2 = new JLabel("     CANDIDATO");
+            etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
+            panel.add(etq2);
+            wnd.add(panel, BorderLayout.NORTH);
+
+            JPanel p = new JPanel();
+            //p.setLayout(new FlowLayout());
+
+            etq = new JLabel("                                                                             ");
+            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
+            p.add(etq);
+
+            etq = new JLabel("Cédula: ");
+            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+            cc = new JTextField(15);
+            p.add(etq);
+            p.add(cc);
+            wnd.add(p, BorderLayout.CENTER);
+
+            p = new JPanel();
+            elim = new JButton("Eliminar");
+            elim.setFont(new Font("Arial", Font.ITALIC, 20));
+            elim.addActionListener(this);
+            p.add(elim);
+            etq = new JLabel("                                                                             ");
+            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
+            p.add(etq);
+            wnd.add(p, BorderLayout.SOUTH);
+
+            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd.setSize(500, 570); 
+            wnd.setVisible(true);
+
+            System.out.println("elimi");
+
+        }else if(e.getSource() == elim){
+
+            el.eliminar();
+            contenedor.setVisible(false);
+            wnd.dispose();
+            System.out.println(lsiat.toString());
         }
 
-    }public static String getNom() {
+    }
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+
+        if(e.getStateChange() == 1){
+            if(e.getItemSelectable() == indica){
+                System.out.println("gkg");
+                JOptionPane.showMessageDialog(wnd, "Ingresar:\n *Promesas juntas, separadas por comas (,)\n  *Cedula sin puntos", 
+                "Indicaciones", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        }
+    }
+
+    
+    
+    
+    
+    
+    public static String getNom() {
         return nom.getText();
     }public static String getCC() {
         return cc.getText();

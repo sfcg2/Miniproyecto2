@@ -79,8 +79,7 @@ public class Insertar {
                             val3 = true;
                             candidato.setPromesas(prom);
                             pd.setSumaDr();
-                            inscritos.add(candidato);
-                            
+                            inscritos.add(candidato);  
                             break;
                         }
                     }if(val3 == false){

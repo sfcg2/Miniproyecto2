@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
@@ -8,7 +7,6 @@ public class Insertar {
 
     public static ArrayList<Candidato> inscritos = new ArrayList<>(); 
     
-    Scanner scanner = new Scanner(System.in);
     App pp = new App();
     
     public Insertar(){};
@@ -82,6 +80,7 @@ public class Insertar {
                             candidato.setPromesas(prom);
                             pd.setSumaDr();
                             inscritos.add(candidato);
+                            
                             break;
                         }
                     }if(val3 == false){
@@ -121,7 +120,7 @@ public class Insertar {
             }
         } 
     }
-    
+
     public static ArrayList<Candidato> getInscritos() {
         return inscritos;
     }

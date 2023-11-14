@@ -37,7 +37,10 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     public static JTextField nom, cc, cdad, idel, part, prom;
     ArrayList <Candidato> lsiat = Insertar.getInscritos();
     JOptionPane pane = new JOptionPane(); 
+    
     Insertar in = new Insertar();
+    Actualizar ac = new Actualizar();
+    
 
     public Interfazz (){
 
@@ -86,12 +89,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         iniciar = new JButton("Iniciar");
         iniciar.addActionListener(this);
         contenedor.add(iniciar, BorderLayout.CENTER);
-/* 
-        
 
-        
-*/
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(500, 580); 
         setVisible(true); 
     }
@@ -113,7 +112,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource() == iniciar){
-            
+
+            dispose();
             wnd = new JFrame("Elecciones");
             wnd.setLayout(new BorderLayout(15,15));
 
@@ -160,89 +160,18 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             panel.add(etq);
             wnd.add(panel, BorderLayout.CENTER);
  
-            wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             wnd.setSize(500, 600); 
             wnd.setVisible(true);
 
         }else if(e.getSource() == insertar){
 
-            wnd = new JFrame("Inscripción");
-            wnd.setLayout(new BorderLayout(15,15));
-
-            etq = new JLabel("D A T O S");
-            
-            etq.setFont(new Font("Arial", Font.BOLD, 50)); 
-
-            panel = new JPanel();
-            panel.setLayout(new FlowLayout());
-            panel.add(etq);
-            wnd.add(panel, BorderLayout.NORTH);
-
-            JPanel p = new JPanel();
-            p.setLayout(new GridLayout(6,2,20,40));
-
-            etq = new JLabel("Nombre: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            nom = new JTextField(15);
-            p.add(etq);
-            p.add(nom);
-
-            etq = new JLabel("Cédula: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            cc = new JTextField(15);
-            p.add(etq);
-            p.add(cc);
-
-            etq = new JLabel("Ciudad: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            cdad = new JTextField(15);
-            p.add(etq);
-            p.add(cdad);
-
-            etq = new JLabel("Ideologia: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            idel = new JTextField(15);
-            p.add(etq);
-            p.add(idel);
-
-            etq = new JLabel("Partido: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            part = new JTextField(15);
-            p.add(etq);
-            p.add(part);
-
-            etq = new JLabel("Promesas: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            prom = new JTextField(15);
-            p.add(etq);
-            p.add(prom);
-
-            wnd.add(p, BorderLayout.CENTER);
-
-            p = new JPanel();
-            //p.setBackground(Color.GREEN);
-            ingresar = new JButton("Ingresar");
-            ingresar.setFont(new Font("Arial", Font.ITALIC, 20));
-            ingresar.addActionListener(this);
-            p.add(ingresar);
-            wnd.add(p, BorderLayout.SOUTH);
-
-            p = new JPanel();
-            p.add(new JLabel("                "));
-            wnd.add(p, BorderLayout.WEST);
-
-            p = new JPanel();
-            p.add(new JLabel("                "));
-            wnd.add(p, BorderLayout.EAST);
-
-            wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            wnd.setSize(500, 570); 
-            wnd.setVisible(true);
-            System.out.println("insert");
-
-
+            inscripciones();
+                
         }else if(e.getSource() == ingresar){
+
             in.insertar();
+            wnd.dispose();
 
             System.out.println(lsiat.toString());
 
@@ -287,12 +216,17 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             p.add(etq);
             wnd.add(p, BorderLayout.SOUTH);
 
-            
-            wnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             wnd.setSize(500, 570); 
             wnd.setVisible(true);
+
             System.out.println("actuali");
 
+        }else if(e.getSource() == actu){
+
+            ac.actualizar();
+            wnd.dispose();
+            System.out.println(lsiat.toString());
         }
 
     }public static String getNom() {
@@ -308,6 +242,81 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     }public static String getProm() {
         return prom.getText();
     }
+    public void inscripciones(){
 
+        wnd = new JFrame("Datos Candidato");
+        wnd.setLayout(new BorderLayout(15,15));
+
+        etq = new JLabel("D A T O S");
+        
+        etq.setFont(new Font("Arial", Font.BOLD, 50)); 
+
+        panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        panel.add(etq);
+        wnd.add(panel, BorderLayout.NORTH);
+
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(6,2,20,40));
+
+        etq = new JLabel("Nombre: ");
+        etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+        nom = new JTextField(15);
+        p.add(etq);
+        p.add(nom);
+
+        etq = new JLabel("Cédula: ");
+        etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+        cc = new JTextField(15);
+        p.add(etq);
+        p.add(cc);
+
+        etq = new JLabel("Ciudad: ");
+        etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+        cdad = new JTextField(15);
+        p.add(etq);
+        p.add(cdad);
+
+        etq = new JLabel("Ideologia: ");
+        etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+        idel = new JTextField(15);
+        p.add(etq);
+        p.add(idel);
+
+        etq = new JLabel("Partido: ");
+        etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+        part = new JTextField(15);
+        p.add(etq);
+        p.add(part);
+
+        etq = new JLabel("Promesas: ");
+        etq.setFont(new Font("Arial", Font.BOLD, 15)); 
+        prom = new JTextField(15);
+        p.add(etq);
+        p.add(prom);
+
+        wnd.add(p, BorderLayout.CENTER);
+
+        p = new JPanel();
+        //p.setBackground(Color.GREEN);
+        ingresar = new JButton("Ingresar");
+        ingresar.setFont(new Font("Arial", Font.ITALIC, 20));
+        ingresar.addActionListener(this);
+        p.add(ingresar);
+        wnd.add(p, BorderLayout.SOUTH);
+
+        p = new JPanel();
+        p.add(new JLabel("                "));
+        wnd.add(p, BorderLayout.WEST);
+
+        p = new JPanel();
+        p.add(new JLabel("                "));
+        wnd.add(p, BorderLayout.EAST);
+
+        wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        wnd.setSize(500, 570); 
+        wnd.setVisible(true);
+        System.out.println("insert");
+    }
     
 }

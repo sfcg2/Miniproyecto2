@@ -51,7 +51,8 @@ public class Candidato extends Ciudadano {
     public String toString() {
         return "\nNombre: " + getNombre() + "\nCédula: " + getCedula() + "\nCiudad: " + getCiudad()
         + "\nIdeología: " + getIdeologia() + "\nPartido Politico: " + getPartido_P() +"\nPromesas: " 
-        + getPromesas();
+        + getPromesas() + "\nVotos: " + getVotos();
+    
     }
 
     public String getPromesas() {

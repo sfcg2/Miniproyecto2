@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Votar {
 
     Scanner scanner = new Scanner(System.in);
@@ -10,20 +12,21 @@ public class Votar {
 
         ArrayList<Candidato> listaCandidatos = Insertar.getInscritos();
 
-        System.out.println("\n[Ingrese 0 para salir]\n");
+/*        System.out.println("\n[Ingrese 0 para salir]\n");
         System.out.println("Número de Candidatos Inscritos: " + listaCandidatos.size());
 
         for (int i = 0; i < listaCandidatos.size(); i++) {
             System.out.println("\nCANDIDATO # " + (i + 1));
             System.out.println(listaCandidatos.get(i));
         }
-
+*/
         boolean candidatoEncontrado = false;
 
         while (!candidatoEncontrado) {
 
-            System.out.print("\nPosición del Candidato que Desea Votar: ");
-            int posicionCandidato = scanner.nextInt();
+            //System.out.print("\nPosición del Candidato que Desea Votar: ");
+            int posicionCandidato = Integer.parseInt(Interfazz.getPosic());
+            
 
             if (posicionCandidato == 0){
                 return;
@@ -32,18 +35,20 @@ public class Votar {
                 if (posicionCandidato > 0 && posicionCandidato <= listaCandidatos.size()) {
 
                     candidatoEncontrado = true;
-                    listaCandidatos.get(posicionCandidato - 1).setsumarVotos();;
-                    System.out.println("\nVoto Registrado para el Candidato " + listaCandidatos.get(posicionCandidato - 1).getNombre()+ ".");
+                    listaCandidatos.get(posicionCandidato - 1).setsumarVotos();
+                    JOptionPane.showMessageDialog(null, "Voto Registrado para \n " + listaCandidatos.get(posicionCandidato - 1).getNombre() , "INFO", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                    //System.out.println("\nVoto Registrado para el Candidato " + listaCandidatos.get(posicionCandidato - 1).getNombre()+ ".");
                 }else {
                     
-                    System.out.println("\nPosición de Candidato NO Valida. Intente Nuevamente.");
-                    //pp.esperarSegundos(1520);
-                    //pp.limpiarPantalla();
+                    JOptionPane.showMessageDialog(null, "Posición de Candidato NO Valida. Intente Nuevamente.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                    //System.out.println("\nPosición de Candidato NO Valida. Intente Nuevamente.");
+                   
 
-                    for (int i = 0; i < listaCandidatos.size(); i++) {
+                    /*for (int i = 0; i < listaCandidatos.size(); i++) {
                         System.out.println("\nCANDIDATO # " + (i + 1));
-                        System.out.println(listaCandidatos.get(i));
-                    }
+                        System.out.println(listaCandidatos.get(i));}*/
                 }
             }
         }

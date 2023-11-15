@@ -38,7 +38,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     JLabel etq, etq2;
     JButton iniciar, ingresar, actu, elim, bcar, salir, vtar ;
     JFrame wnd, wnd2;
-    public static JTextField nom, cc, cdad, idel, part, prom;
+    public static JTextField nom, cc, cdad, idel, part, prom, posic;
     ArrayList <Candidato> lsiat = Insertar.getInscritos();
     JOptionPane pane = new JOptionPane(); 
     Candidato candidato = new Candidato();
@@ -46,6 +46,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     Actualizar ac = new Actualizar();
     Eliminar el = new Eliminar();
     Buscar bc = new Buscar();
+    Votar vt = new Votar();
 
     public Interfazz (){
 
@@ -140,9 +141,11 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             opciones.add(buscar);
 
             listar = new JMenuItem("Lista Candidatos");
+            listar.addActionListener(this);
             opciones.add(listar);
 
             votar = new JMenuItem("Votar");
+            votar.addActionListener(this);
             opciones.add(votar);
 
             info = new JMenuItem("Información");
@@ -359,6 +362,55 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             wnd2.setSize(500, 570); 
             wnd2.setVisible(true);
+
+        }else if (e.getSource() == votar){
+
+            wnd = new JFrame("Votación");
+            wnd.setLayout(new BorderLayout());
+            panel = new JPanel();
+            panel.setLayout(new BorderLayout());
+            
+
+            area = new JTextArea(100,10);
+
+            for(int i = 0; i<lsiat.size(); i++){ 
+                
+                area.append("CANDIDATO # " + (i + 1) + "\n"+ lsiat.get(i).toString());
+                System.out.println("llll" + lsiat.get(i));
+                   
+            }
+
+            area.setEditable(false);
+            scroll = new JScrollPane(area);
+            panel.add(scroll, BorderLayout.CENTER);
+            wnd.add(panel, BorderLayout.CENTER);
+
+            panel = new JPanel();
+            panel.setLayout(new GridLayout(3,1, 15,15));
+
+            etq = new JLabel("Posición: ");
+            etq.setFont(new Font("Arial", Font.BOLD, 20));
+            posic = new JTextField(15);
+            etq2 = new JLabel("                            ");
+            etq2.setFont(new Font("Arial", Font.BOLD, 15));
+            panel.add(etq);
+            panel.add(posic);
+            panel.add(etq2);
+
+            vtar = new JButton("Votar");
+            vtar.addActionListener(this);
+            panel.add(vtar);
+            wnd.add(panel, BorderLayout.SOUTH);
+            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd.setSize(500, 570); 
+            wnd.setVisible(true);
+
+        }else if(e.getSource() == vtar){
+
+            vt.votar();
+            System.out.println(lsiat.toString());
+            wnd.dispose();
+
         }
 
     }
@@ -392,6 +444,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         return part.getText();
     }public static String getProm() {
         return prom.getText();
+    }public static String getPosic(){
+        return posic.getText();
     }
     public void inscripciones(){
 

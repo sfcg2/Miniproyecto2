@@ -363,7 +363,45 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd2.setSize(500, 570); 
             wnd2.setVisible(true);
 
-        }else if (e.getSource() == votar){
+        }else if(e.getSource() == listar){
+
+            wnd2 = new JFrame("Lista Candidatos");
+            wnd2.setLayout(new BorderLayout());
+            area = new JTextArea(100,10);
+            //candidato.setCedula(cc.getText());
+                
+            for(int i = 0; i<lsiat.size(); i++){ 
+                
+                area.append("\nCANDIDATO # " + (i + 1) + "\n"+ lsiat.get(i).toString());
+
+            }
+
+            area.setEditable(false);
+            scroll = new JScrollPane(area);
+            wnd2.add(scroll, BorderLayout.CENTER);
+            
+            panel = new JPanel();
+            //panel.setLayout(new GridLayout(2,1,15,15));
+            salir = new JButton("Salir");
+            salir.addActionListener(this);
+            panel.add(salir);
+            etq = new JLabel("   ");
+            etq.setFont(new Font("Arial", Font.BOLD, 40));
+            panel.add(etq);
+
+            wnd2.add(panel,BorderLayout.SOUTH);
+
+            System.out.println(lsiat.toString());
+
+            wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd2.setSize(500, 570); 
+            wnd2.setVisible(true);
+
+        }else if(e.getSource() == salir){
+            wnd2.dispose();
+        }
+        
+        else if (e.getSource() == votar){
 
             wnd = new JFrame("Votación");
             wnd.setLayout(new BorderLayout());
@@ -375,8 +413,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             for(int i = 0; i<lsiat.size(); i++){ 
                 
-                area.append("CANDIDATO # " + (i + 1) + "\n"+ lsiat.get(i).toString());
-                System.out.println("llll" + lsiat.get(i));
+                area.append("\nCANDIDATO # " + (i + 1) + "\n"+ lsiat.get(i).toString());
+                //System.out.println("llll" + lsiat.get(i));
                    
             }
 

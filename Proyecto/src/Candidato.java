@@ -49,8 +49,8 @@ public class Candidato extends Ciudadano {
     
     @Override
     public String toString() {
-        return "\nNombre: " + getNombre() + "\nCedula: " + getCedula() + "\nCiudad: " + getCiudad()
-        + "\nIdeologia: " + getIdeologia() + "\nPartido Politico: " + getPartido_P() +"\nPromesas: " 
+        return "\nNombre: " + getNombre() + "\nCédula: " + getCedula() + "\nCiudad: " + getCiudad()
+        + "\nIdeología: " + getIdeologia() + "\nPartido Politico: " + getPartido_P() +"\nPromesas: " 
         + getPromesas();
     }
 

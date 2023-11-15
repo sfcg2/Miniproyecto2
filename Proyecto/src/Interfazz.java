@@ -7,6 +7,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
@@ -30,18 +32,20 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     JMenu indica, opciones;
     JMenuItem insertar, actualizar, eliminar, buscar, listar, votar, info;
     JPanel panel;
+    JTextArea area; 
+    JScrollPane scroll;
     //BorderLayout border;
     JLabel etq, etq2;
     JButton iniciar, ingresar, actu, elim, bcar, salir, vtar ;
-    JFrame wnd;
+    JFrame wnd, wnd2;
     public static JTextField nom, cc, cdad, idel, part, prom;
     ArrayList <Candidato> lsiat = Insertar.getInscritos();
     JOptionPane pane = new JOptionPane(); 
-    
+    Candidato candidato = new Candidato();
     Insertar in = new Insertar();
     Actualizar ac = new Actualizar();
     Eliminar el = new Eliminar();
-    
+    Buscar bc = new Buscar();
 
     public Interfazz (){
 
@@ -132,6 +136,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             opciones.add(eliminar);
 
             buscar = new JMenuItem("Buscar Candidato");
+            buscar.addActionListener(this);
             opciones.add(buscar);
 
             listar = new JMenuItem("Lista Candidatos");
@@ -279,7 +284,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             panel = new JPanel();
             panel.setLayout(new GridLayout(2,1,15,35));
             
-            etq = new JLabel("       BUSCAR");
+            etq = new JLabel("        BUSCAR");
             etq.setFont(new Font("Arial", Font.BOLD, 50));
             panel.add(etq);
 
@@ -320,10 +325,41 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             
         }else if(e.getSource() == bcar){
 
-            el.eliminar();
-            contenedor.setVisible(false);
-            wnd.dispose();
+            //bc.buscar();
+            boolean val4 = false;
+
+            wnd2 = new JFrame("Candidato");
+            wnd2.setLayout(new BorderLayout());
+            area = new JTextArea(100,10);
+            candidato.setCedula(cc.getText());
+                
+            for(int i = 0; i<lsiat.size(); i++){ 
+                
+                if(candidato.getCedula().equalsIgnoreCase(lsiat.get(i).getCedula())){
+                    val4 = true;
+                    JOptionPane.showMessageDialog(wnd, "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                    area.append(lsiat.get(i).toString());
+                    //System.out.println("llll" + lsiat.get(i));
+                    break;
+                }
+
+            }if(val4 == false){
+
+                JOptionPane.showMessageDialog(wnd, "Candidato NO encontrado,\n Vuelva a ingresar la cédula.",
+                "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            } 
+
+            area.setEditable(false);
+            scroll = new JScrollPane(area);
+            wnd2.add(scroll, BorderLayout.CENTER);
+            //contenedor.setVisible(false);
+            //wnd.dispose();
             System.out.println(lsiat.toString());
+
+            wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd2.setSize(500, 570); 
+            wnd2.setVisible(true);
         }
 
     }
@@ -393,7 +429,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         p.add(etq);
         p.add(cdad);
 
-        etq = new JLabel("Ideologia: ");
+        etq = new JLabel("Ideología: ");
         etq.setFont(new Font("Arial", Font.BOLD, 15)); 
         idel = new JTextField(15);
         p.add(etq);

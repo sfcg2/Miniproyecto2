@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class Buscar {
         
     public Buscar(){}
@@ -13,7 +15,7 @@ public class Buscar {
             boolean val4 = false;
             Candidato candidato = new Candidato();
             String cc = Interfazz.getCC();
-        
+            
 
         
             while(val4 == false){
@@ -24,6 +26,7 @@ public class Buscar {
                     
                     if(candidato.getCedula().equalsIgnoreCase(listaC.get(i).getCedula())){
                         val4 = true;
+                        JOptionPane.showMessageDialog(null, "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println("\nC A N D I D A T O # " + (i+1));
                         System.out.println(listaC.get(i));
                         break;

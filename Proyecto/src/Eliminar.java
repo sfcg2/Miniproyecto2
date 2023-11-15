@@ -25,14 +25,14 @@ public class Eliminar {
             if(candidato.getCedula().equalsIgnoreCase(listaC2.get(i).getCedula())){
                 val4 = true;
                 listaC2.remove(i);
-                JOptionPane.showMessageDialog(null, "Candidato Eliminado", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato Eliminado", "INFO", JOptionPane.INFORMATION_MESSAGE);
                 //inz.dispose();
                 return;
             }
 
         }if(val4 == false){
 
-            JOptionPane.showMessageDialog(null, "Candidato NO encontrado,\n vuelva a ingresar la cedula.",
+            JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato NO encontrado,\n vuelva a ingresar la cedula.",
             "ERROR", JOptionPane.ERROR_MESSAGE);
             //inz.dispose();
             //inz.contenedor.setVisible(false);
@@ -42,6 +42,7 @@ public class Eliminar {
             
     }public static ArrayList<Candidato> getListaC2() {
         return listaC2;
+
     }public static boolean getVal4(){
         return val4;
     };

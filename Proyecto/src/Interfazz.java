@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
+//import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -32,22 +33,25 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     JMenu indica, opciones;
     JMenuItem insertar, actualizar, eliminar, buscar, listar, votar, info;
     JPanel panel;
-    JTextArea area; 
+    public static JTextArea area; 
     JScrollPane scroll;
     //BorderLayout border;
     JLabel etq, etq2;
     JButton iniciar, ingresar, actu, elim, bcar, salir, vtar ;
-    JFrame wnd, wnd2;
+    public static JFrame wnd, wnd2;
     public static JTextField nom, cc, cdad, idel, part, prom, posic;
     ArrayList <Candidato> lsiat = Insertar.getInscritos();
-    ArrayList <Candidato> lsiatElim = Eliminar.getListaC2();
-    JOptionPane pane = new JOptionPane(); 
+    public static ArrayList <Candidato> lsiatElim = Eliminar.getListaC2();
+    // JOptionPane pane = new JOptionPane(); 
     Candidato candidato = new Candidato();
     Insertar in = new Insertar();
     Actualizar ac = new Actualizar();
     Eliminar el = new Eliminar();
     Buscar bc = new Buscar();
     Votar vt = new Votar();
+    PMasC pc = new PMasC();
+    Ciudadestop3 tp = new Ciudadestop3();
+
     public static String buscarCedula;
 
     public Interfazz (){
@@ -151,6 +155,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             opciones.add(votar);
 
             info = new JMenuItem("Información");
+            info.addActionListener(this);
             opciones.add(info);
 
             panel = new JPanel();
@@ -176,7 +181,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
         }else if(e.getSource() == actualizar){
 
-            buscarCedula = JOptionPane.showInputDialog(wnd2, "Ingrese la cédula del candidato a actualizar:");
+            buscarCedula = JOptionPane.showInputDialog(wnd, "Ingrese la cédula del candidato a actualizar:");
             /*wnd = new JFrame("Actualización");
             wnd.setLayout(new BorderLayout(15,15));
 
@@ -246,7 +251,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
         }else if(e.getSource() == eliminar){
 
-            buscarCedula = JOptionPane.showInputDialog(wnd2, "Ingrese la cédula del candidato a actualizar:");
+            buscarCedula = JOptionPane.showInputDialog(wnd, "Ingrese la cédula del candidato a actualizar:");
 
             /*wnd = new JFrame("Eliminación");
             wnd.setLayout(new BorderLayout(15,15));
@@ -296,8 +301,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             if (buscarCedula != null){
 
                 System.out.println("buscar2");
-                wnd2 = new JFrame("Candidato");
-                wnd2.setLayout(new BorderLayout());
+                wnd = new JFrame("Candidato");
+                wnd.setLayout(new BorderLayout());
                 area = new JTextArea(100,10);
                 //candidato.setCedula(buscarCedula);
                 System.out.println("lsita1"+ lsiatElim.toString());
@@ -305,17 +310,18 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
                 el.eliminar();
 
                 if(Eliminar.getVal4() != false){
+
                     area.append(lsiatElim.toString());
                     area.setEditable(false);
                     scroll = new JScrollPane(area);
-                    wnd2.add(scroll, BorderLayout.CENTER);
+                    wnd.add(scroll, BorderLayout.CENTER);
                     
                     System.out.println(lsiat.toString());
                     System.out.println("lsita2"+ lsiatElim.toString());
 
-                    wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    wnd2.setSize(500, 570); 
-                    wnd2.setVisible(true);
+                    wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                    wnd.setSize(500, 570); 
+                    wnd.setVisible(true);
                     
                 }else{return;}
                 
@@ -383,40 +389,27 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             
             if (buscarCedula != null){
 
-                boolean val4 = false;
                 System.out.println("buscar2");
                 wnd2 = new JFrame("Candidato");
                 wnd2.setLayout(new BorderLayout());
                 area = new JTextArea(100,10);
-                candidato.setCedula(buscarCedula);
                 
-                for(int i = 0; i<lsiat.size(); i++){ 
+                if(Buscar.getVal4() != false){
+
+                    area.setEditable(false);
+                    scroll = new JScrollPane(area);
+                    wnd2.add(scroll, BorderLayout.CENTER);
                     
-                    if(candidato.getCedula().equalsIgnoreCase(lsiat.get(i).getCedula())){
-                        val4 = true;
-                        JOptionPane.showMessageDialog(wnd2, "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
-                        area.append(lsiat.get(i).toString());
-                        System.out.println("llll" + lsiat.get(i));
-                        break;
-                    }
-                }if(val4 == false){
-                        
-                    JOptionPane.showMessageDialog(wnd2, "Candidato NO encontrado,\n Vuelva a ingresar la cédula.",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-                    return;
-                } 
+                    System.out.println(lsiat.toString());
 
-                area.setEditable(false);
-                scroll = new JScrollPane(area);
-                wnd2.add(scroll, BorderLayout.CENTER);
+                    wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                    wnd2.setSize(500, 570); 
+                    wnd2.setVisible(true);
                 
-                System.out.println(lsiat.toString());
-
-                wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                wnd2.setSize(500, 570); 
-                wnd2.setVisible(true);
-
+                }else{return;}
+            
             }else{
+                System.out.println("cancelar");
                 return;
             }
             
@@ -461,15 +454,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             wnd2 = new JFrame("Lista Candidatos");
             wnd2.setLayout(new BorderLayout());
-            area = new JTextArea(100,10);
-            //candidato.setCedula(cc.getText());
-                
-            for(int i = 0; i<lsiat.size(); i++){ 
-                
-                area.append("\nCANDIDATO # " + (i + 1) + "\n"+ lsiat.get(i).toString());
 
-            }
-
+            area = new JTextArea(250,10);
             area.setEditable(false);
             scroll = new JScrollPane(area);
             wnd2.add(scroll, BorderLayout.CENTER);
@@ -502,15 +488,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             panel = new JPanel();
             panel.setLayout(new BorderLayout());
             
-
             area = new JTextArea(100,10);
-
-            for(int i = 0; i<lsiat.size(); i++){ 
-                
-                area.append("\nCANDIDATO # " + (i + 1) + "\n"+ lsiat.get(i).toString());
-                //System.out.println("llll" + lsiat.get(i));
-                   
-            }
 
             area.setEditable(false);
             scroll = new JScrollPane(area);
@@ -547,8 +525,22 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             wnd = new JFrame("Información");
             wnd.setLayout(new BorderLayout());
-            panel = new JPanel();
-            panel.setLayout(new BorderLayout());
+            //panel = new JPanel();
+            //panel.setBackground(Color.BLUE);
+            //panel.setLayout(new BorderLayout());
+            area = new JTextArea(100,10);
+
+            vt.VotosTotales();
+            pc.pMasC();
+            tp.ciudadestop3();
+
+            area.setEditable(false);
+            scroll = new JScrollPane(area);
+            wnd.add(scroll, BorderLayout.CENTER);
+            
+            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd.setSize(500, 570); 
+            wnd.setVisible(true);
         }
 
     }
@@ -584,9 +576,14 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         return prom.getText();
     }public static String getPosic(){
         return posic.getText();
-    }
-    public static String getBuscarCedula(){
+    }public static String getBuscarCedula(){
         return buscarCedula;
+    }public static ArrayList <Candidato> getLsiatElim(){
+        return lsiatElim;
+    }public static JTextArea getArea(){
+        return area;
+    }public static JFrame getwidth(){
+        return wnd;
     }
     public void inscripciones(){
 

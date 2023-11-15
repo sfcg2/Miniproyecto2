@@ -29,7 +29,7 @@ public class Actualizar extends Insertar{
                 val4 = true;
                 listaC.remove(i);
                 //inz.inscripciones();                    
-                JOptionPane.showMessageDialog(null, "Candidato encontrado\n ingrese los datos", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato Encontrado\n", "INFO", JOptionPane.INFORMATION_MESSAGE);
                 //inz.dispose();
                 return;
             }
@@ -37,8 +37,7 @@ public class Actualizar extends Insertar{
         }if(val4 == false){
 
             //inz.dispose();
-            JOptionPane.showMessageDialog(null, "Candidato NO encontrado,\n",
-            "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato NO encontrado\n","ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         } 
     }public static boolean getVal4(){

@@ -28,7 +28,7 @@ public class Insertar {
             
             if(candidato.getCedula().equals(inscritos.get(i).getCedula())){
                 val = true;
-                JOptionPane.showMessageDialog(null, "Cedula existente, ingresela nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(Interfazz.getwidth(), "Cedula existente, ingresela nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return;
                 //System.out.println("-> Candidato Existente");
                 //System.out.println("  Ingrese los datos nuevamente.");
@@ -54,7 +54,7 @@ public class Insertar {
                         break;
                     }
                 }if(val1 == false){
-                    JOptionPane.showMessageDialog(null, "Valido solo para Ciudades del Valle del Cauca, ingresela nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "Valido solo para Ciudades del Valle del Cauca, ingresela nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                     //System.out.println("   Vuelva a Ingresar la Ciudad.\n");
                     
@@ -79,11 +79,12 @@ public class Insertar {
                             val3 = true;
                             candidato.setPromesas(prom);
                             pd.setSumaDr();
-                            inscritos.add(candidato);  
+                            inscritos.add(candidato);
+                            JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato Inscrito", "INFO", JOptionPane.INFORMATION_MESSAGE);  
                             break;
                         }
                     }if(val3 == false){
-                        JOptionPane.showMessageDialog(null, "Partido NO Valido, ingreselo nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(Interfazz.getwidth(), "Partido NO Valido, ingreselo nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return;
                         //System.out.println("\n-> Partido NO Valido");
                         //System.out.println("   Vuelva a ingresar ideologia + partido.\n");
@@ -103,14 +104,14 @@ public class Insertar {
                             break;  
                         }
                     }if(val3 == false){
-                        JOptionPane.showMessageDialog(null, "Partido NO Valido, ingreselo nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(Interfazz.getwidth(), "Partido NO Valido, ingreselo nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return;
                         //System.out.println("\n-> Partido NO Valido");
                         //System.out.println("   Vuelva a ingresar ideologia + partido.\n");
                         
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "IDEOLOGIAS VALIDAS -> Derecha o Izquierda", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "IDEOLOGIAS VALIDAS -> Derecha o Izquierda", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                     //System.out.println("\n-> IDEOLOGIAS VALIDAS -> Derecha o Izquierda.\n");
                     

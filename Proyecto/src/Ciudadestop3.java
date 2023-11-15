@@ -11,10 +11,12 @@ public class Ciudadestop3{
         Comparator<CiudadOrigen> comparadorC = Comparator.comparing(CiudadOrigen::getCont);
         Arrays.sort(listaCiudad,comparadorC);
         
-        System.out.println("\n\n> TOP 3 DE CIUDADES CON MENOS CANDIDATOS\n");
+        Interfazz.getArea().append("\n-> TOP 3 DE CIUDADES CON MENOS CANDIDATOS\n");
+        //System.out.println("\n\n> TOP 3 DE CIUDADES CON MENOS CANDIDATOS\n");
 
         for(int i = 0; i<3; i++){
-            System.out.println(" " + (i+1) + ". " + listaCiudad[i] + " con " + listaCiudad[i].getCont() + " Candidato/s." + "\n\n ++++++");
+            Interfazz.getArea().append(" " + (i+1) + ". " + listaCiudad[i] + " con " + listaCiudad[i].getCont() + " Candidato/s." + "\n");
+            //System.out.println(" " + (i+1) + ". " + listaCiudad[i] + " con " + listaCiudad[i].getCont() + " Candidato/s." + "\n\n ++++++");
         }
 
         /*for(int i = listaCiudad.length - 1; i >= 40; i--){

@@ -7,14 +7,14 @@ public class Buscar {
     public Buscar(){}
 
     App pp = new App();
-    
+    public static boolean val4 = false;
     public void buscar(){
 
         ArrayList<Candidato> listaC = Insertar.getInscritos();   
             
-            boolean val4 = false;
+            
             Candidato candidato = new Candidato();
-            String cc = Interfazz.getCC();
+            String cc = Interfazz.getBuscarCedula();
             
 
         
@@ -26,17 +26,21 @@ public class Buscar {
                     
                     if(candidato.getCedula().equalsIgnoreCase(listaC.get(i).getCedula())){
                         val4 = true;
-                        JOptionPane.showMessageDialog(null, "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println("\nC A N D I D A T O # " + (i+1));
-                        System.out.println(listaC.get(i));
+                        JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                        Interfazz.getArea().append(listaC.get(i).toString());
+                        //System.out.println("\nC A N D I D A T O # " + (i+1));
+                        //System.out.println(listaC.get(i));
                         break;
                     }
 
                 }if(val4 == false){
-                        System.out.println("\nCandidato NO encontrado, vuelva a ingresar la cedula.\n");
-                        System.out.println("[Ingrese 0 para salir]\n");
+                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato NO encontrado,\n Vuelva a ingresar la cédula.",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
                 } 
             }
+    }public static boolean getVal4(){
+        return val4;
     }
             
 }

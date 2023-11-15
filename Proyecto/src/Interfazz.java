@@ -177,7 +177,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             in.insertar();
             
-            System.out.println(lsiat.toString());
+            //System.out.println(lsiat.toString());
 
         }else if(e.getSource() == actualizar){
 
@@ -243,15 +243,18 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
                 return;
             }
 
-        }else if(e.getSource() == actu){
+        }/*else if(e.getSource() == actu){
 
             ac.actualizar();
             wnd.dispose();
             System.out.println(lsiat.toString());
 
-        }else if(e.getSource() == eliminar){
+        }*/else if(e.getSource() == eliminar){
 
-            buscarCedula = JOptionPane.showInputDialog(wnd, "Ingrese la cédula del candidato a actualizar:");
+            wnd2 = new JFrame("Candidato");
+            wnd2.setLayout(new BorderLayout());
+            area = new JTextArea(100,10);
+            buscarCedula = JOptionPane.showInputDialog(wnd, "Ingrese la cédula del candidato a eliminar:");
 
             /*wnd = new JFrame("Eliminación");
             wnd.setLayout(new BorderLayout(15,15));
@@ -301,11 +304,9 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             if (buscarCedula != null){
 
                 System.out.println("buscar2");
-                wnd = new JFrame("Candidato");
-                wnd.setLayout(new BorderLayout());
-                area = new JTextArea(100,10);
+                
                 //candidato.setCedula(buscarCedula);
-                System.out.println("lsita1"+ lsiatElim.toString());
+                //System.out.println("lsita1"+ lsiatElim.toString());
                 
                 el.eliminar();
 
@@ -318,10 +319,6 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
                     
                     System.out.println(lsiat.toString());
                     System.out.println("lsita2"+ lsiatElim.toString());
-
-                    wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    wnd.setSize(500, 570); 
-                    wnd.setVisible(true);
                     
                 }else{return;}
                 
@@ -329,6 +326,9 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
                 System.out.println("cancelar");
                 return;
             }
+            wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd2.setSize(500, 570); 
+            wnd2.setVisible(true);
 
         }/*else if(e.getSource() == elim){
 
@@ -339,7 +339,11 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
         }*/else if(e.getSource() == buscar){
 
-            buscarCedula = JOptionPane.showInputDialog(wnd,"Ingrese la cédula del candidato a actualizar:");
+            wnd2 = new JFrame("Candidato");
+            wnd2.setLayout(new BorderLayout());
+            area = new JTextArea(100,10);
+                
+            buscarCedula = JOptionPane.showInputDialog(wnd,"Ingrese la cédula del candidato a buscar:");
 
             /*wnd = new JFrame("Busquedad");
             wnd.setLayout(new BorderLayout(15,15));
@@ -390,10 +394,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             if (buscarCedula != null){
 
                 System.out.println("buscar2");
-                wnd2 = new JFrame("Candidato");
-                wnd2.setLayout(new BorderLayout());
-                area = new JTextArea(100,10);
                 
+                bc.buscar();
                 if(Buscar.getVal4() != false){
 
                     area.setEditable(false);
@@ -401,10 +403,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
                     wnd2.add(scroll, BorderLayout.CENTER);
                     
                     System.out.println(lsiat.toString());
-
-                    wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    wnd2.setSize(500, 570); 
-                    wnd2.setVisible(true);
+                    
+                    
                 
                 }else{return;}
             
@@ -412,6 +412,9 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
                 System.out.println("cancelar");
                 return;
             }
+            wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            wnd2.setSize(500, 570); 
+            wnd2.setVisible(true);
             
         }/*else if(e.getSource() == bcar){
 
@@ -642,7 +645,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
         p = new JPanel();
         //p.setBackground(Color.GREEN);
-        ingresar = new JButton("Ingresar");
+        ingresar = new JButton("Inscribir");
         ingresar.setFont(new Font("Arial", Font.ITALIC, 20));
         ingresar.addActionListener(this);
         p.add(ingresar);
@@ -659,7 +662,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         wnd.setSize(500, 570); 
         wnd.setVisible(true);
-        System.out.println("insert");
+        //System.out.println("insert");
     }
     
 }

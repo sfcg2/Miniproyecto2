@@ -26,7 +26,7 @@ public class Buscar {
                     
                     if(candidato.getCedula().equalsIgnoreCase(listaC.get(i).getCedula())){
                         val4 = true;
-                        JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
                         Interfazz.getArea().append(listaC.get(i).toString());
                         //System.out.println("\nC A N D I D A T O # " + (i+1));
                         //System.out.println(listaC.get(i));
@@ -34,8 +34,7 @@ public class Buscar {
                     }
 
                 }if(val4 == false){
-                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "Candidato NO encontrado,\n Vuelva a ingresar la cédula.",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Candidato NO encontrado","ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                 } 
             }

@@ -7,16 +7,16 @@ public class Actualizar extends Insertar{
     public Actualizar(){}
     
     //App pp = new App();
-
+    public static boolean val4 = false;
     public void actualizar(){     
         
         ArrayList<Candidato> listaC = Insertar.getInscritos();
            
-        Interfazz inz = new Interfazz();
-        boolean val4 = false;
+        //Interfazz inz = new Interfazz();
+        
         Candidato candidato = new Candidato();
         //String nom = Interfazz.getNom();
-        String cc = Interfazz.getCC();
+        String cc = Interfazz.getBuscarCedula();
 
         
 
@@ -28,20 +28,22 @@ public class Actualizar extends Insertar{
             if(candidato.getCedula().equalsIgnoreCase(listaC.get(i).getCedula())){
                 val4 = true;
                 listaC.remove(i);
-                inz.inscripciones();                    
-                JOptionPane.showMessageDialog(inz.wnd, "Candidato encontrado\n ingrese los datos", "INFO", JOptionPane.INFORMATION_MESSAGE);
-                inz.dispose();
+                //inz.inscripciones();                    
+                JOptionPane.showMessageDialog(null, "Candidato encontrado\n ingrese los datos", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                //inz.dispose();
                 return;
             }
 
         }if(val4 == false){
 
-            inz.dispose();
-            JOptionPane.showMessageDialog(null, "Candidato NO encontrado,\n vuelva a ingresar la cedula.",
+            //inz.dispose();
+            JOptionPane.showMessageDialog(null, "Candidato NO encontrado,\n",
             "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         } 
-    }
+    }public static boolean getVal4(){
+        return val4;
+    };
     
 }
 

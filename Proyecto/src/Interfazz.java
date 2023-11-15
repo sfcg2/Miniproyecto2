@@ -40,6 +40,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     JFrame wnd, wnd2;
     public static JTextField nom, cc, cdad, idel, part, prom, posic;
     ArrayList <Candidato> lsiat = Insertar.getInscritos();
+    ArrayList <Candidato> lsiatElim = Eliminar.getListaC2();
     JOptionPane pane = new JOptionPane(); 
     Candidato candidato = new Candidato();
     Insertar in = new Insertar();
@@ -47,6 +48,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     Eliminar el = new Eliminar();
     Buscar bc = new Buscar();
     Votar vt = new Votar();
+    public static String buscarCedula;
 
     public Interfazz (){
 
@@ -174,7 +176,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
         }else if(e.getSource() == actualizar){
 
-            wnd = new JFrame("Actualización");
+            buscarCedula = JOptionPane.showInputDialog(wnd2, "Ingrese la cédula del candidato a actualizar:");
+            /*wnd = new JFrame("Actualización");
             wnd.setLayout(new BorderLayout(15,15));
 
             panel = new JPanel();
@@ -215,9 +218,25 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             wnd.setSize(500, 570); 
-            wnd.setVisible(true);
+            wnd.setVisible(true);*/
 
             System.out.println("actuali");
+            if (buscarCedula != null){
+
+                System.out.println("act2");
+                
+                ac.actualizar();
+
+                if(Actualizar.getVal4() != false){
+                    inscripciones();
+                    System.out.println(lsiat.toString());
+                    System.out.println("lsita2"+ lsiatElim.toString());
+                }else{return;}
+                
+            }else{
+                System.out.println("cancelar");
+                return;
+            }
 
         }else if(e.getSource() == actu){
 
@@ -227,7 +246,9 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
         }else if(e.getSource() == eliminar){
 
-            wnd = new JFrame("Eliminación");
+            buscarCedula = JOptionPane.showInputDialog(wnd2, "Ingrese la cédula del candidato a actualizar:");
+
+            /*wnd = new JFrame("Eliminación");
             wnd.setLayout(new BorderLayout(15,15));
 
             panel = new JPanel();
@@ -268,20 +289,53 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             wnd.setSize(500, 570); 
-            wnd.setVisible(true);
+            wnd.setVisible(true);*/
 
             System.out.println("elimi");
 
-        }else if(e.getSource() == elim){
+            if (buscarCedula != null){
+
+                System.out.println("buscar2");
+                wnd2 = new JFrame("Candidato");
+                wnd2.setLayout(new BorderLayout());
+                area = new JTextArea(100,10);
+                //candidato.setCedula(buscarCedula);
+                System.out.println("lsita1"+ lsiatElim.toString());
+                
+                el.eliminar();
+
+                if(Eliminar.getVal4() != false){
+                    area.append(lsiatElim.toString());
+                    area.setEditable(false);
+                    scroll = new JScrollPane(area);
+                    wnd2.add(scroll, BorderLayout.CENTER);
+                    
+                    System.out.println(lsiat.toString());
+                    System.out.println("lsita2"+ lsiatElim.toString());
+
+                    wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                    wnd2.setSize(500, 570); 
+                    wnd2.setVisible(true);
+                    
+                }else{return;}
+                
+            }else{
+                System.out.println("cancelar");
+                return;
+            }
+
+        }/*else if(e.getSource() == elim){
 
             el.eliminar();
             contenedor.setVisible(false);
             wnd.dispose();
             System.out.println(lsiat.toString());
 
-        }else if(e.getSource() == buscar){
+        }*/else if(e.getSource() == buscar){
 
-            wnd = new JFrame("Busquedad");
+            buscarCedula = JOptionPane.showInputDialog(wnd,"Ingrese la cédula del candidato a actualizar:");
+
+            /*wnd = new JFrame("Busquedad");
             wnd.setLayout(new BorderLayout(15,15));
 
             panel = new JPanel();
@@ -294,12 +348,13 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             etq2 = new JLabel("     CANDIDATO");
             etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
             panel.add(etq2);
-            wnd.add(panel, BorderLayout.NORTH);
+            wnd.add(panel, BorderLayout.NORTH);*/
 
-            JPanel p = new JPanel();
+            //JPanel p = new JPanel();
             //p.setLayout(new FlowLayout());
 
-            etq = new JLabel("                                                                             ");
+
+            /*etq = new JLabel("                                                                             ");
             etq.setFont(new Font("Arial", Font.BOLD, 80)); 
             p.add(etq);
 
@@ -322,27 +377,66 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             wnd.setSize(500, 570); 
-            wnd.setVisible(true);
+            wnd.setVisible(true);*/
 
             System.out.println("buscar");
             
-        }else if(e.getSource() == bcar){
+            if (buscarCedula != null){
+
+                boolean val4 = false;
+                System.out.println("buscar2");
+                wnd2 = new JFrame("Candidato");
+                wnd2.setLayout(new BorderLayout());
+                area = new JTextArea(100,10);
+                candidato.setCedula(buscarCedula);
+                
+                for(int i = 0; i<lsiat.size(); i++){ 
+                    
+                    if(candidato.getCedula().equalsIgnoreCase(lsiat.get(i).getCedula())){
+                        val4 = true;
+                        JOptionPane.showMessageDialog(wnd2, "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                        area.append(lsiat.get(i).toString());
+                        System.out.println("llll" + lsiat.get(i));
+                        break;
+                    }
+                }if(val4 == false){
+                        
+                    JOptionPane.showMessageDialog(wnd2, "Candidato NO encontrado,\n Vuelva a ingresar la cédula.",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                } 
+
+                area.setEditable(false);
+                scroll = new JScrollPane(area);
+                wnd2.add(scroll, BorderLayout.CENTER);
+                
+                System.out.println(lsiat.toString());
+
+                wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                wnd2.setSize(500, 570); 
+                wnd2.setVisible(true);
+
+            }else{
+                return;
+            }
+            
+        }/*else if(e.getSource() == bcar){
 
             //bc.buscar();
             boolean val4 = false;
-
+            System.out.println("buscar2");
             wnd2 = new JFrame("Candidato");
             wnd2.setLayout(new BorderLayout());
             area = new JTextArea(100,10);
-            candidato.setCedula(cc.getText());
-                
+            candidato.setCedula(buscarCedula);
+            
             for(int i = 0; i<lsiat.size(); i++){ 
                 
                 if(candidato.getCedula().equalsIgnoreCase(lsiat.get(i).getCedula())){
                     val4 = true;
                     JOptionPane.showMessageDialog(wnd, "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
                     area.append(lsiat.get(i).toString());
-                    //System.out.println("llll" + lsiat.get(i));
+                    System.out.println("llll" + lsiat.get(i));
                     break;
                 }
 
@@ -363,7 +457,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd2.setSize(500, 570); 
             wnd2.setVisible(true);
 
-        }else if(e.getSource() == listar){
+        }*/else if(e.getSource() == listar){
 
             wnd2 = new JFrame("Lista Candidatos");
             wnd2.setLayout(new BorderLayout());
@@ -444,11 +538,17 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd.setVisible(true);
 
         }else if(e.getSource() == vtar){
-
+            
             vt.votar();
             System.out.println(lsiat.toString());
             wnd.dispose();
 
+        }else if(e.getSource() == info){
+
+            wnd = new JFrame("Información");
+            wnd.setLayout(new BorderLayout());
+            panel = new JPanel();
+            panel.setLayout(new BorderLayout());
         }
 
     }
@@ -484,6 +584,9 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         return prom.getText();
     }public static String getPosic(){
         return posic.getText();
+    }
+    public static String getBuscarCedula(){
+        return buscarCedula;
     }
     public void inscripciones(){
 

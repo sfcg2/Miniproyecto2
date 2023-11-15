@@ -9,13 +9,13 @@ public class Eliminar {
     public Eliminar(){}
 
     //App pp = new App();
-    
+    public static boolean val4 = false;
     public void eliminar(){     
              
-        boolean val4 = false;
+        
         Candidato candidato = new Candidato();
         //Interfazz inz = new Interfazz();
-        String cc = Interfazz.getCC();
+        String cc = Interfazz.getBuscarCedula();
         
 
         candidato.setCedula(cc);
@@ -34,6 +34,7 @@ public class Eliminar {
 
             JOptionPane.showMessageDialog(null, "Candidato NO encontrado,\n vuelva a ingresar la cedula.",
             "ERROR", JOptionPane.ERROR_MESSAGE);
+            //inz.dispose();
             //inz.contenedor.setVisible(false);
             return;
         } 
@@ -41,7 +42,10 @@ public class Eliminar {
             
     }public static ArrayList<Candidato> getListaC2() {
         return listaC2;
-    }
+    }public static boolean getVal4(){
+        return val4;
+    };
+
 
 }
 

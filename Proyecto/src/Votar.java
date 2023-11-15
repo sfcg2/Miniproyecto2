@@ -37,12 +37,12 @@ public class Votar {
                     candidatoEncontrado = true;
                     listaCandidatos.get(posicionCandidato - 1).setsumarVotos();
                     
-                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "Voto Registrado para \n " + listaCandidatos.get(posicionCandidato - 1).getNombre() , "INFO", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "Voto Registrado para " + listaCandidatos.get(posicionCandidato - 1).getNombre() , "INFO", JOptionPane.INFORMATION_MESSAGE);
                     return;
                     //System.out.println("\nVoto Registrado para el Candidato " + listaCandidatos.get(posicionCandidato - 1).getNombre()+ ".");
                 }else {
                     
-                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "Posición de Candidato NO Valida. Intente Nuevamente.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(Interfazz.getwidth(), "Posición NO Válida", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                     //System.out.println("\nPosición de Candidato NO Valida. Intente Nuevamente.");
                    

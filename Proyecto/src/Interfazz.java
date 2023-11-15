@@ -353,8 +353,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             area.setEditable(false);
             scroll = new JScrollPane(area);
             wnd2.add(scroll, BorderLayout.CENTER);
-            //contenedor.setVisible(false);
-            //wnd.dispose();
+            
             System.out.println(lsiat.toString());
 
             wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

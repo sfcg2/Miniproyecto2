@@ -10,9 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
-//import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -33,26 +31,26 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     JMenu indica, opciones;
     JMenuItem insertar, actualizar, eliminar, buscar, listar, votar, info;
     JPanel panel;
-    public static JTextArea area; 
     JScrollPane scroll;
-    //BorderLayout border;
     JLabel etq, etq2;
-    JButton iniciar, ingresar, actu, elim, bcar, salir, vtar ;
+    JButton iniciar, ingresar, salir1, salir2, vtar ;
+    ArrayList <Candidato> lsiat = Insertar.getInscritos();
+
     public static JFrame wnd, wnd2;
     public static JTextField nom, cc, cdad, idel, part, prom, posic;
-    ArrayList <Candidato> lsiat = Insertar.getInscritos();
+    public static JTextArea area; 
     public static ArrayList <Candidato> lsiatElim = Eliminar.getListaC2();
-    // JOptionPane pane = new JOptionPane(); 
+    public static String buscarCedula;
+
     Candidato candidato = new Candidato();
     Insertar in = new Insertar();
     Actualizar ac = new Actualizar();
     Eliminar el = new Eliminar();
     Buscar bc = new Buscar();
     Votar vt = new Votar();
+    ListaCandidatos lc = new ListaCandidatos();
     PMasC pc = new PMasC();
     Ciudadestop3 tp = new Ciudadestop3();
-
-    public static String buscarCedula;
 
     public Interfazz (){
 
@@ -66,32 +64,23 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         etq = new JLabel("      ELECCIONES");
         etq.setFont(new Font("Arial", Font.BOLD, 50)); 
         panel.add(etq);
-
         etq = new JLabel("      CANDIDATOS");
         etq.setFont(new Font("Arial", Font.BOLD, 50)); 
         panel.add(etq);
 
         panel = new JPanel();
-        //panel.setBackground(Color.BLUE);
-
         etq = new JLabel("                   ");
         etq.setFont(new Font("Serif", Font.ITALIC, 20));
         panel.add(etq);
-
         contenedor.add(panel, BorderLayout.WEST);
 
         panel = new JPanel();
-        //panel.setBackground(Color.BLUE);
-
         etq = new JLabel("                   ");
         etq.setFont(new Font("Serif", Font.ITALIC, 20));
         panel.add(etq);
-
         contenedor.add(panel, BorderLayout.EAST);
 
         panel = new JPanel();
-        //panel.setBackground(Color.BLUE);
-
         etq = new JLabel("                   ");
         etq.setFont(new Font("Serif", Font.ITALIC, 20));
         panel.add(etq);
@@ -159,14 +148,13 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             opciones.add(info);
 
             panel = new JPanel();
-            //panel.setBackground(Color.BLUE);
             etq.setIcon(new ImageIcon("C:\\Users\\ASUS\\Downloads\\Miniproyecto2-main\\Proyecto\\img\\colV.jpg"));
             etq.setPreferredSize(new Dimension(800,600));
             panel.add(etq);
             wnd.add(panel, BorderLayout.CENTER);
  
             wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            wnd.setSize(500, 600); 
+            wnd.setSize(500, 570); 
             wnd.setVisible(true);
 
         }else if(e.getSource() == insertar){
@@ -177,312 +165,85 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
 
             in.insertar();
             
-            //System.out.println(lsiat.toString());
-
+        }else if(e.getSource() == salir1){
+            wnd.dispose();
         }else if(e.getSource() == actualizar){
 
             buscarCedula = JOptionPane.showInputDialog(wnd, "Ingrese la cédula del candidato a actualizar:");
-            /*wnd = new JFrame("Actualización");
-            wnd.setLayout(new BorderLayout(15,15));
-
-            panel = new JPanel();
-            panel.setLayout(new GridLayout(2,1,15,35));
-            
-            etq = new JLabel("   ACTUALIZAR");
-            etq.setFont(new Font("Arial", Font.BOLD, 50));
-            panel.add(etq);
-
-            etq2 = new JLabel("     CANDIDATO");
-            etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
-            panel.add(etq2);
-            wnd.add(panel, BorderLayout.NORTH);
-
-            JPanel p = new JPanel();
-            //p.setLayout(new FlowLayout());
-
-            etq = new JLabel("                                                                             ");
-            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
-            p.add(etq);
-
-            etq = new JLabel("Cédula: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            cc = new JTextField(15);
-            p.add(etq);
-            p.add(cc);
-            wnd.add(p, BorderLayout.CENTER);
-
-            p = new JPanel();
-            actu = new JButton("Actualizar");
-            actu.setFont(new Font("Arial", Font.ITALIC, 20));
-            actu.addActionListener(this);
-            p.add(actu);
-            etq = new JLabel("                                                                             ");
-            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
-            p.add(etq);
-            wnd.add(p, BorderLayout.SOUTH);
-
-            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            wnd.setSize(500, 570); 
-            wnd.setVisible(true);*/
-
-            System.out.println("actuali");
+            Actualizar.setVal4(false);
             if (buscarCedula != null){
-
-                System.out.println("act2");
                 
                 ac.actualizar();
 
                 if(Actualizar.getVal4() != false){
                     inscripciones();
-                    System.out.println(lsiat.toString());
-                    System.out.println("lsita2"+ lsiatElim.toString());
-                }else{return;}
+                }
                 
-            }else{
-                System.out.println("cancelar");
-                return;
-            }
+            }else{return;}
 
-        }/*else if(e.getSource() == actu){
+        }else if(e.getSource() == eliminar){
 
-            ac.actualizar();
-            wnd.dispose();
-            System.out.println(lsiat.toString());
-
-        }*/else if(e.getSource() == eliminar){
-
-            wnd2 = new JFrame("Candidato");
-            wnd2.setLayout(new BorderLayout());
-            area = new JTextArea(100,10);
             buscarCedula = JOptionPane.showInputDialog(wnd, "Ingrese la cédula del candidato a eliminar:");
 
-            /*wnd = new JFrame("Eliminación");
-            wnd.setLayout(new BorderLayout(15,15));
-
-            panel = new JPanel();
-            panel.setLayout(new GridLayout(2,1,15,35));
-            
-            etq = new JLabel("      ELIMINAR");
-            etq.setFont(new Font("Arial", Font.BOLD, 50));
-            panel.add(etq);
-
-            etq2 = new JLabel("     CANDIDATO");
-            etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
-            panel.add(etq2);
-            wnd.add(panel, BorderLayout.NORTH);
-
-            JPanel p = new JPanel();
-            //p.setLayout(new FlowLayout());
-
-            etq = new JLabel("                                                                             ");
-            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
-            p.add(etq);
-
-            etq = new JLabel("Cédula: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            cc = new JTextField(15);
-            p.add(etq);
-            p.add(cc);
-            wnd.add(p, BorderLayout.CENTER);
-
-            p = new JPanel();
-            elim = new JButton("Eliminar");
-            elim.setFont(new Font("Arial", Font.ITALIC, 20));
-            elim.addActionListener(this);
-            p.add(elim);
-            etq = new JLabel("                                                                             ");
-            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
-            p.add(etq);
-            wnd.add(p, BorderLayout.SOUTH);
-
-            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            wnd.setSize(500, 570); 
-            wnd.setVisible(true);*/
-
-            System.out.println("elimi");
-
             if (buscarCedula != null){
-
-                System.out.println("buscar2");
-                
-                //candidato.setCedula(buscarCedula);
-                //System.out.println("lsita1"+ lsiatElim.toString());
                 
                 el.eliminar();
-
-                if(Eliminar.getVal4() != false){
-
-                    area.append(lsiatElim.toString());
-                    area.setEditable(false);
-                    scroll = new JScrollPane(area);
-                    wnd.add(scroll, BorderLayout.CENTER);
-                    
-                    System.out.println(lsiat.toString());
-                    System.out.println("lsita2"+ lsiatElim.toString());
-                    
-                }else{return;}
                 
-            }else{
-                System.out.println("cancelar");
-                return;
-            }
-            wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            wnd2.setSize(500, 570); 
-            wnd2.setVisible(true);
+            }else{return;}
 
-        }/*else if(e.getSource() == elim){
+        }else if(e.getSource() == buscar){
 
-            el.eliminar();
-            contenedor.setVisible(false);
-            wnd.dispose();
-            System.out.println(lsiat.toString());
-
-        }*/else if(e.getSource() == buscar){
-
-            wnd2 = new JFrame("Candidato");
-            wnd2.setLayout(new BorderLayout());
-            area = new JTextArea(100,10);
-                
             buscarCedula = JOptionPane.showInputDialog(wnd,"Ingrese la cédula del candidato a buscar:");
-
-            /*wnd = new JFrame("Busquedad");
-            wnd.setLayout(new BorderLayout(15,15));
-
-            panel = new JPanel();
-            panel.setLayout(new GridLayout(2,1,15,35));
             
-            etq = new JLabel("        BUSCAR");
-            etq.setFont(new Font("Arial", Font.BOLD, 50));
-            panel.add(etq);
-
-            etq2 = new JLabel("     CANDIDATO");
-            etq2.setFont(new Font("Arial", Font.BOLD, 50)); 
-            panel.add(etq2);
-            wnd.add(panel, BorderLayout.NORTH);*/
-
-            //JPanel p = new JPanel();
-            //p.setLayout(new FlowLayout());
-
-
-            /*etq = new JLabel("                                                                             ");
-            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
-            p.add(etq);
-
-            etq = new JLabel("Cédula: ");
-            etq.setFont(new Font("Arial", Font.BOLD, 15)); 
-            cc = new JTextField(15);
-            p.add(etq);
-            p.add(cc);
-            wnd.add(p, BorderLayout.CENTER);
-
-            p = new JPanel();
-            bcar = new JButton("Buscar");
-            bcar.setFont(new Font("Arial", Font.ITALIC, 20));
-           bcar.addActionListener(this);
-            p.add(bcar);
-            etq = new JLabel("                                                                             ");
-            etq.setFont(new Font("Arial", Font.BOLD, 80)); 
-            p.add(etq);
-            wnd.add(p, BorderLayout.SOUTH);
-
-            wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            wnd.setSize(500, 570); 
-            wnd.setVisible(true);*/
-
-            System.out.println("buscar");
+            Buscar.setVal(false);
             
             if (buscarCedula != null){
 
-                System.out.println("buscar2");
+                area = new JTextArea(100,10);
                 
                 bc.buscar();
-                if(Buscar.getVal4() != false){
 
+                if(Buscar.getVal() != false){
+
+                    wnd2 = new JFrame("Candidato");
+                    wnd2.setLayout(new BorderLayout());
                     area.setEditable(false);
                     scroll = new JScrollPane(area);
                     wnd2.add(scroll, BorderLayout.CENTER);
-                    
-                    System.out.println(lsiat.toString());
-                    
-                    
-                
-                }else{return;}
-            
-            }else{
-                System.out.println("cancelar");
-                return;
-            }
-            wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            wnd2.setSize(500, 570); 
-            wnd2.setVisible(true);
-            
-        }/*else if(e.getSource() == bcar){
-
-            //bc.buscar();
-            boolean val4 = false;
-            System.out.println("buscar2");
-            wnd2 = new JFrame("Candidato");
-            wnd2.setLayout(new BorderLayout());
-            area = new JTextArea(100,10);
-            candidato.setCedula(buscarCedula);
-            
-            for(int i = 0; i<lsiat.size(); i++){ 
-                
-                if(candidato.getCedula().equalsIgnoreCase(lsiat.get(i).getCedula())){
-                    val4 = true;
-                    JOptionPane.showMessageDialog(wnd, "Candidato Encontrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
-                    area.append(lsiat.get(i).toString());
-                    System.out.println("llll" + lsiat.get(i));
-                    break;
+                    wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                    wnd2.setSize(500, 570); 
+                    wnd2.setVisible(true);
+                    System.out.println(lsiat.toString()); 
                 }
-
-            }if(val4 == false){
-
-                JOptionPane.showMessageDialog(wnd, "Candidato NO encontrado,\n Vuelva a ingresar la cédula.",
-                "ERROR", JOptionPane.ERROR_MESSAGE);
-                return;
-            } 
-
-            area.setEditable(false);
-            scroll = new JScrollPane(area);
-            wnd2.add(scroll, BorderLayout.CENTER);
+               
+            }else{return;}
             
-            System.out.println(lsiat.toString());
-
-            wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            wnd2.setSize(500, 570); 
-            wnd2.setVisible(true);
-
-        }*/else if(e.getSource() == listar){
+        }else if(e.getSource() == listar){
 
             wnd2 = new JFrame("Lista Candidatos");
             wnd2.setLayout(new BorderLayout());
 
             area = new JTextArea(250,10);
+            lc.listaCandidatos();
             area.setEditable(false);
             scroll = new JScrollPane(area);
             wnd2.add(scroll, BorderLayout.CENTER);
             
             panel = new JPanel();
-            //panel.setLayout(new GridLayout(2,1,15,15));
-            salir = new JButton("Salir");
-            salir.addActionListener(this);
-            panel.add(salir);
+            salir2 = new JButton("Salir");
+            salir2.setFont(new Font("Arial", Font.ITALIC, 20));
+            salir2.addActionListener(this);
+            panel.add(salir2);
             etq = new JLabel("   ");
             etq.setFont(new Font("Arial", Font.BOLD, 40));
             panel.add(etq);
-
             wnd2.add(panel,BorderLayout.SOUTH);
-
-            System.out.println(lsiat.toString());
 
             wnd2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             wnd2.setSize(500, 570); 
             wnd2.setVisible(true);
 
-        }else if(e.getSource() == salir){
-            wnd2.dispose();
-        }
+        }else if(e.getSource() == salir2){wnd2.dispose();}
         
         else if (e.getSource() == votar){
 
@@ -492,6 +253,7 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             panel.setLayout(new BorderLayout());
             
             area = new JTextArea(100,10);
+            lc.listaCandidatos();
 
             area.setEditable(false);
             scroll = new JScrollPane(area);
@@ -521,16 +283,12 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         }else if(e.getSource() == vtar){
             
             vt.votar();
-            System.out.println(lsiat.toString());
             wnd.dispose();
 
         }else if(e.getSource() == info){
 
             wnd = new JFrame("Información");
             wnd.setLayout(new BorderLayout());
-            //panel = new JPanel();
-            //panel.setBackground(Color.BLUE);
-            //panel.setLayout(new BorderLayout());
             area = new JTextArea(100,10);
 
             vt.VotosTotales();
@@ -545,8 +303,8 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
             wnd.setSize(500, 570); 
             wnd.setVisible(true);
         }
-
     }
+
     @Override
     public void itemStateChanged(ItemEvent e) {
 
@@ -560,11 +318,6 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         }
     }
 
-    
-    
-    
-    
-    
     public static String getNom() {
         return nom.getText();
     }public static String getCC() {
@@ -588,13 +341,13 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
     }public static JFrame getwidth(){
         return wnd;
     }
+
     public void inscripciones(){
 
         wnd = new JFrame("Datos Candidato");
         wnd.setLayout(new BorderLayout(15,15));
 
         etq = new JLabel("D A T O S");
-        
         etq.setFont(new Font("Arial", Font.BOLD, 50)); 
 
         panel = new JPanel();
@@ -644,11 +397,14 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         wnd.add(p, BorderLayout.CENTER);
 
         p = new JPanel();
-        //p.setBackground(Color.GREEN);
         ingresar = new JButton("Inscribir");
         ingresar.setFont(new Font("Arial", Font.ITALIC, 20));
         ingresar.addActionListener(this);
         p.add(ingresar);
+        salir1 = new JButton("Salir");
+        salir1.setFont(new Font("Arial", Font.ITALIC, 20));
+        salir1.addActionListener(this);
+        p.add(salir1);
         wnd.add(p, BorderLayout.SOUTH);
 
         p = new JPanel();
@@ -662,7 +418,5 @@ public class Interfazz extends JFrame implements ActionListener, ItemListener {
         wnd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         wnd.setSize(500, 570); 
         wnd.setVisible(true);
-        //System.out.println("insert");
     }
-    
 }

@@ -21,5 +21,5 @@ public enum PartidoIzq {
     public String toString() {
         return super.toString();
     }
-
+    
 }

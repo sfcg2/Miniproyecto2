@@ -12,17 +12,12 @@ public class Ciudadestop3{
         Arrays.sort(listaCiudad,comparadorC);
         
         Interfazz.getArea().append("\n-> TOP 3 DE CIUDADES CON MENOS CANDIDATOS\n");
-        //System.out.println("\n\n> TOP 3 DE CIUDADES CON MENOS CANDIDATOS\n");
 
         for(int i = 0; i<3; i++){
             Interfazz.getArea().append(" " + (i+1) + ". " + listaCiudad[i] + " con " + listaCiudad[i].getCont() + " Candidato/s." + "\n");
-            //System.out.println(" " + (i+1) + ". " + listaCiudad[i] + " con " + listaCiudad[i].getCont() + " Candidato/s." + "\n\n ++++++");
+            
         }
 
-        /*for(int i = listaCiudad.length - 1; i >= 40; i--){
-            System.out.println(listaCiudad[i] +" "+ listaCiudad[i].getCont());
-            //System.out.println(" " + (43-i) + ". " + listaCiudad[i] + " con " + listaCiudad[i].getCont() + " Candidatos.");
-        }*/
     }
 
 }

@@ -1,14 +1,10 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-
-
 public class Insertar {
 
     public static ArrayList<Candidato> inscritos = new ArrayList<>(); 
-    
-    App pp = new App();
-    
+        
     public Insertar(){};
 
     public void insertar(){
@@ -16,12 +12,9 @@ public class Insertar {
         Candidato candidato = new Candidato();
         String nom = Interfazz.getNom();
         String cc = Interfazz.getCC();
-        
-
         boolean val = false;
 
         candidato.setNombre(nom);
-        
         candidato.setCedula(cc);
             
         for(int i = 0; i<inscritos.size(); i++){ 
@@ -30,11 +23,6 @@ public class Insertar {
                 val = true;
                 JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Candidato Existente", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return;
-                //System.out.println("-> Candidato Existente");
-                //System.out.println("  Ingrese los datos nuevamente.");
-                //pp.esperarSegundos(1700);
-                //pp.limpiarPantalla();
-                //insertar();
             }
 
         }if(val == false){  
@@ -56,8 +44,6 @@ public class Insertar {
                 }if(val1 == false){
                     JOptionPane.showMessageDialog(Interfazz.getwidth(), "Válido solo para ciudades del Valle del Cauca", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
-                    //System.out.println("   Vuelva a Ingresar la Ciudad.\n");
-                    
                 }
             }
 
@@ -65,6 +51,7 @@ public class Insertar {
             String idel = Interfazz.getIdel();
 
             while(val3 == false){
+
                 candidato.setIdeologia(idel);
                 String part = Interfazz.getPart();
                 String prom = Interfazz.getProm();
@@ -81,15 +68,14 @@ public class Insertar {
                             pd.setSumaDr();
                             inscritos.add(candidato);
                             JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Candidato Inscrito", "INFO", JOptionPane.INFORMATION_MESSAGE);  
-                            break;
+                            return;
                         }
+
                     }if(val3 == false){
                         JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Partido NO Válido", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return;
-                        //System.out.println("\n-> Partido NO Valido");
-                        //System.out.println("   Vuelva a ingresar ideologia + partido.\n");
-                        
-                    }             
+                    }          
+
                 }else if(candidato.getIdeologia().equalsIgnoreCase("IZQUIERDA")){
 
                     candidato.setPartido_P(part);
@@ -106,23 +92,16 @@ public class Insertar {
                     }if(val3 == false){
                         JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Partido NO Válido", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return;
-                        //System.out.println("\n-> Partido NO Valido");
-                        //System.out.println("   Vuelva a ingresar ideologia + partido.\n");
-                        
                     }
+
                 }else{
                     JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Idelogías Válidas:\n -> Derecha o Izquierda", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    return;
-                    //System.out.println("\n-> IDEOLOGIAS VALIDAS -> Derecha o Izquierda.\n");
-                    
-                    
+                    return;                    
                 }
             }
         } 
-    }
 
-    public static ArrayList<Candidato> getInscritos() {
+    }public static ArrayList<Candidato> getInscritos() {
         return inscritos;
     }
-
 }

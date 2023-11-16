@@ -1,12 +1,9 @@
-import java.util.Scanner;
-
 public class Ciudadano  {
 
     private String nombre;
     private String cedula;
     private String ciudad;
 
-    Scanner scanner = new Scanner(System.in);
 
     public Ciudadano(){};
 
@@ -31,7 +28,6 @@ public class Ciudadano  {
     }
 
     public void setCiudad(String cc) {
-        
         this.ciudad = cc;
 
     }

@@ -71,5 +71,5 @@ public class Candidato extends Ciudadano {
     public int getVotos() {
         return votos;
     }
-
+    
 }

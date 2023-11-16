@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class Eliminar {
@@ -8,16 +7,14 @@ public class Eliminar {
 
     public Eliminar(){}
 
-    //App pp = new App();
-    public static boolean val4 = false;
+    
+
     public void eliminar(){     
-             
         
+        boolean val4 = false;
         Candidato candidato = new Candidato();
-        //Interfazz inz = new Interfazz();
         String cc = Interfazz.getBuscarCedula();
         
-
         candidato.setCedula(cc);
 
         for(int i = 0; i<listaC2.size(); i++){ 
@@ -26,26 +23,18 @@ public class Eliminar {
                 val4 = true;
                 listaC2.remove(i);
                 JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Candidato Eliminado", "INFO", JOptionPane.INFORMATION_MESSAGE);
-                //inz.dispose();
-                break;
             }
 
         }if(val4 == false){
 
             JOptionPane.showMessageDialog(Interfazz.getwidth(), "  Candidato NO encontrado","ERROR", JOptionPane.ERROR_MESSAGE);
-            //inz.dispose();
-            //inz.contenedor.setVisible(false);
             return;
         } 
     
-            
     }public static ArrayList<Candidato> getListaC2() {
         return listaC2;
 
-    }public static boolean getVal4(){
-        return val4;
-    };
-
+    }
 
 }
 
